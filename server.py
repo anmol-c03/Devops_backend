@@ -9,12 +9,10 @@ import google.generativeai as genai
 
 app = Flask(__name__)
 CORS(app)
-
+api_key = os.getenv("GOOGLE_API_KEY")
 # Load Gemini API key
 try:
-    with open("/Users/anmolchalise/.gemini/gemini_api.json", "r") as f:
-        data=json.load(f)
-    genai.configure(api_key=data['api'])
+    genai.configure(api_key=api_key)
 except KeyError:
     print("Error: GOOGLE_API_KEY environment variable not set.")
     genai_available = False
@@ -51,5 +49,5 @@ def generate():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5001, debug=True)
