@@ -22,7 +22,7 @@ else:
 
 @app.route('/generate', methods=['POST'])
 def generate():
-    return jsonify({"gemini_response":"okay done!"})
+    # return jsonify({"gemini_response":"okay done!"})
     try:
         data = request.json
         image_data = data.get("image")
