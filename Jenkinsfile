@@ -56,10 +56,8 @@ pipeline {
         stage('run docker image') {
             steps {
                 sh """
-                    ssh azureuser@20.172.37.185 <<EOF
-                        docker network inspect my-network >/dev/null 2>&1 || docker network create my-network
-                        docker run -d -p 80:80 --network my-network anizalmuseycai/backend:${BUILD_NUMBER}
-                    EOF
+                    ssh azureuser@20.172.37.185 "docker network inspect my-network >/dev/null 2>&1 || docker network create my-network"
+                    ssh azureuser@20.172.37.185 "docker run -d -p 5001:5001 --network my-network anizalmuseycai/backend:${BUILD_NUMBER}"
                 """
             }
         }
