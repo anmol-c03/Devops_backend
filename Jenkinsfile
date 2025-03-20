@@ -53,9 +53,12 @@ pipeline {
             }
         }
         
-        stage('Hello') {
+        stage('run docker image') {
             steps {
-                echo 'Hello World'
+                sh """ssh azureuser@20.172.37.185 && \
+                    docker run -d -p 5001:5001 --network my-network anizalmuseycai/backend:${BUILD_NUMBER}
+
+                """
             }
         }
     }
