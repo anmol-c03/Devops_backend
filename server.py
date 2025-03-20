@@ -10,6 +10,7 @@ import google.generativeai as genai
 app = Flask(__name__)
 CORS(app)
 api_key = os.getenv("GOOGLE_API_KEY")
+print(api_key)
 # Load Gemini API key
 try:
     genai.configure(api_key=api_key)
@@ -21,6 +22,7 @@ else:
 
 @app.route('/generate', methods=['POST'])
 def generate():
+    return jsonify({"gemini_response":"okay done!"})
     try:
         data = request.json
         image_data = data.get("image")
