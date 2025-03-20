@@ -63,7 +63,7 @@ pipeline {
                     ssh azureuser@20.172.37.185 "docker ps -q --filter name=backend | grep -q . && docker stop backend && docker rm backend|| echo 'No previous container found'"
                     
                     # Run the new container with a specific name
-                    ssh azureuser@20.172.37.185 "docker run -d -p 80:80 --name backend --network my-network anizalmuseycai/backend:${BUILD_NUMBER}"
+                    ssh azureuser@20.172.37.185 "docker run -d -p 5001:5001 --name backend --network my-network anizalmuseycai/backend:${BUILD_NUMBER}"
                 """
             }
         }
